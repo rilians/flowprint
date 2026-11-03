@@ -41,7 +41,7 @@ The first account sign-in creates a private workspace. If that account has no cl
 
 ## Deployment on Vercel
 
-The Vercel project is linked to this repository and builds it as a Next.js app. `engines.node` in `package.json` pins the build to Node.js 22.x; do not change it to a discontinued major without running the quality checks again. Configure these project environment variables for production, preview, and development:
+The production deployment is at **https://flowprint-orpin.vercel.app**. The Vercel project is linked to this repository and builds it as a Next.js app. `engines.node` in `package.json` pins the build to Node.js 22.x; do not change it to a discontinued major without running the quality checks again. Configure these project environment variables for production, preview, and development:
 
 ```dotenv
 NEXT_PUBLIC_SUPABASE_URL=https://<project-ref>.supabase.co
@@ -54,9 +54,8 @@ For Supabase Auth, set **Site URL** to the production origin and add the product
 
 ```text
 http://localhost:3000/**
-https://flowprint.vercel.app/**
+https://flowprint-orpin.vercel.app/**
 https://flowprint*.vercel.app/**
-https://*-lians-projects-0815fce8.vercel.app/**
 ```
 
 Keep email confirmation enabled unless unverified signups are explicitly intended. On a fresh Supabase project, apply `supabase/migrations/0002_flowprint_supabase.sql` once and confirm that RLS is enabled on all three `flowprint_*` tables. If Git-triggered deployments are disabled on the Vercel project, trigger a deployment for the desired branch/ref explicitly after pushing.
