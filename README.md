@@ -39,6 +39,27 @@ For a new project, apply `0002_flowprint_supabase.sql`, enable email/password si
 
 The first account sign-in creates a private workspace. If that account has no cloud processes yet, the current local workspace is seeded to it; otherwise remote records are loaded. Signed-out edits stay in local Demo Mode. The app only uses the authenticated user's RLS-protected access token and the public project key.
 
+## Deployment on Vercel
+
+The production deployment is at **https://flowprint-orpin.vercel.app**. The Vercel project is linked to this repository and builds it as a Next.js app. `engines.node` in `package.json` pins the build to Node.js 22.x; do not change it to a discontinued major without running the quality checks again. Configure these project environment variables for production, preview, and development:
+
+```dotenv
+NEXT_PUBLIC_SUPABASE_URL=https://<project-ref>.supabase.co
+NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY=sb_publishable_...
+```
+
+Use the publishable key, never the service-role or secret key. `GEMINI_API_KEY` is server-only and is currently stored as a **production-only sensitive** Vercel environment variable; preview deployments intentionally do not receive it. Rotate it before use and never put it in `NEXT_PUBLIC_*` or source control. `GEMINI_MODEL` is optional and defaults to `gemini-3.6-flash`. Without the key, the application still works and the AI controls report that Gemini is not configured.
+
+For Supabase Auth, set **Site URL** to the production origin and add the production origin plus `/app`, localhost, and the project's Vercel preview URLs to the redirect allow-list. For this project the useful patterns are:
+
+```text
+http://localhost:3000/**
+https://flowprint-orpin.vercel.app/**
+https://flowprint*.vercel.app/**
+```
+
+Email confirmation is enabled (`mailer_autoconfirm: false`, `external_email_enabled: true`, `disable_signup: false`); Supabase's built-in mailer is used, so configure SMTP in the Supabase dashboard for production-grade delivery and a higher sending limit. On a fresh Supabase project, apply `supabase/migrations/0002_flowprint_supabase.sql` once and confirm that RLS is enabled on all three `flowprint_*` tables. Git-triggered deployments are explicitly enabled in `vercel.json` (`git.deploymentEnabled: true`). The production branch is `main`: pushes to `main` create production deployments; pushes/PRs to other branches create previews. The project-level `gitProviderOptions.createDeployments` toggle controls GitHub Deployment records rather than push-triggered builds and can be enabled in Vercel → Project Settings → Git if desired.
+
 ## Main routes
 
 - `/` — product landing page
