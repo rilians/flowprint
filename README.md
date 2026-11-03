@@ -48,7 +48,7 @@ NEXT_PUBLIC_SUPABASE_URL=https://<project-ref>.supabase.co
 NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY=sb_publishable_...
 ```
 
-Use the publishable key, never the service-role or secret key. `GEMINI_API_KEY` is optional and server-only; add it as an encrypted environment variable only after rotating to a new key. `GEMINI_MODEL` is optional and defaults to `gemini-3.6-flash`. Without a Gemini key, the application still works and the AI controls report that Gemini is not configured.
+Use the publishable key, never the service-role or secret key. `GEMINI_API_KEY` is server-only and is currently stored as a **production-only sensitive** Vercel environment variable; preview deployments intentionally do not receive it. Rotate it before use and never put it in `NEXT_PUBLIC_*` or source control. `GEMINI_MODEL` is optional and defaults to `gemini-3.6-flash`. Without the key, the application still works and the AI controls report that Gemini is not configured.
 
 For Supabase Auth, set **Site URL** to the production origin and add the production origin plus `/app`, localhost, and the project's Vercel preview URLs to the redirect allow-list. For this project the useful patterns are:
 
@@ -58,7 +58,7 @@ https://flowprint-orpin.vercel.app/**
 https://flowprint*.vercel.app/**
 ```
 
-Keep email confirmation enabled unless unverified signups are explicitly intended. On a fresh Supabase project, apply `supabase/migrations/0002_flowprint_supabase.sql` once and confirm that RLS is enabled on all three `flowprint_*` tables. If Git-triggered deployments are disabled on the Vercel project, trigger a deployment for the desired branch/ref explicitly after pushing.
+Email confirmation is enabled (`mailer_autoconfirm: false`, `external_email_enabled: true`, `disable_signup: false`); Supabase's built-in mailer is used, so configure SMTP in the Supabase dashboard for production-grade delivery and a higher sending limit. On a fresh Supabase project, apply `supabase/migrations/0002_flowprint_supabase.sql` once and confirm that RLS is enabled on all three `flowprint_*` tables. Git-triggered deployments are explicitly enabled in `vercel.json` (`git.deploymentEnabled: true`). The production branch is `main`: pushes to `main` create production deployments; pushes/PRs to other branches create previews. The project-level `gitProviderOptions.createDeployments` toggle controls GitHub Deployment records rather than push-triggered builds and can be enabled in Vercel → Project Settings → Git if desired.
 
 ## Main routes
 
