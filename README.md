@@ -39,6 +39,28 @@ For a new project, apply `0002_flowprint_supabase.sql`, enable email/password si
 
 The first account sign-in creates a private workspace. If that account has no cloud processes yet, the current local workspace is seeded to it; otherwise remote records are loaded. Signed-out edits stay in local Demo Mode. The app only uses the authenticated user's RLS-protected access token and the public project key.
 
+## Deployment on Vercel
+
+The Vercel project is linked to this repository and builds it as a Next.js app. `engines.node` in `package.json` pins the build to Node.js 22.x; do not change it to a discontinued major without running the quality checks again. Configure these project environment variables for production, preview, and development:
+
+```dotenv
+NEXT_PUBLIC_SUPABASE_URL=https://<project-ref>.supabase.co
+NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY=sb_publishable_...
+```
+
+Use the publishable key, never the service-role or secret key. `GEMINI_API_KEY` is optional and server-only; add it as an encrypted environment variable only after rotating to a new key. `GEMINI_MODEL` is optional and defaults to `gemini-3.6-flash`. Without a Gemini key, the application still works and the AI controls report that Gemini is not configured.
+
+For Supabase Auth, set **Site URL** to the production origin and add the production origin plus `/app`, localhost, and the project's Vercel preview URLs to the redirect allow-list. For this project the useful patterns are:
+
+```text
+http://localhost:3000/**
+https://flowprint.vercel.app/**
+https://flowprint*.vercel.app/**
+https://*-lians-projects-0815fce8.vercel.app/**
+```
+
+Keep email confirmation enabled unless unverified signups are explicitly intended. On a fresh Supabase project, apply `supabase/migrations/0002_flowprint_supabase.sql` once and confirm that RLS is enabled on all three `flowprint_*` tables. If Git-triggered deployments are disabled on the Vercel project, trigger a deployment for the desired branch/ref explicitly after pushing.
+
 ## Main routes
 
 - `/` — product landing page
