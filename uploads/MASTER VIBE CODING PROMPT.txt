@@ -1,0 +1,1246 @@
+# MASTER BUILD PROMPT — FLOWPRINT
+## Business Process Intelligence & Automation Opportunity Platform
+
+You are acting as a Senior Full-Stack Engineer, Product Designer, UX Architect, and SaaS Product Developer.
+
+Your task is to design and build a complete, production-quality web application named **FLOWPRINT**.
+
+Do not build a generic dashboard, basic CRUD application, or static UI prototype.
+
+Build a functional SaaS product that helps organizations visualize business processes, discover operational inefficiencies, identify automation opportunities, simulate process improvements, and generate professional business analysis reports.
+
+The application must combine excellent visual design, meaningful business logic, interactive workflow visualization, accurate calculations, persistent data, and a coherent user experience.
+
+---
+
+# 1. PRODUCT IDENTITY
+
+**Product:** FLOWPRINT
+
+**Category:** Business Process Intelligence & Automation Opportunity Platform
+
+**Tagline:** See the Work. Find the Waste. Design What's Next.
+
+**Core Product Concept:**
+
+FLOWPRINT enables users to:
+
+1. Create visual representations of existing business processes.
+2. Analyze operational workload and identify bottlenecks.
+3. Discover activities that are suitable for automation or simplification.
+4. Create improved versions of existing workflows.
+5. Simulate the impact of proposed changes.
+6. Generate professional process improvement reports.
+
+FLOWPRINT is a process intelligence and process improvement design tool.
+
+It is NOT primarily:
+- A project management platform.
+- A task management application.
+- A generic workflow execution platform.
+- A generic analytics dashboard.
+- An AI chatbot.
+
+The key differentiator is the complete journey from **As-Is Process → Process Intelligence → Improvement Opportunities → To-Be Scenario → Business Impact Report**.
+
+The primary experience must communicate this journey visually.
+
+# 2. TECHNOLOGY STACK
+
+Use the following technology stack.
+
+## Core
+
+- Next.js with App Router.
+- React.
+- TypeScript.
+- Strict TypeScript configuration.
+- Tailwind CSS.
+- shadcn/ui.
+- Lucide React.
+
+Use current stable, mutually compatible package versions. Do not unnecessarily pin outdated versions.
+
+## Workflow Canvas
+
+- `@xyflow/react`.
+- Custom React Flow node components.
+- React Flow controls and minimap.
+- Custom node inspector.
+- Interactive node and edge management.
+
+## State and Validation
+
+- Zustand.
+- Zod.
+- React Hook Form.
+- Appropriate Next.js server/client component separation.
+
+## Charts and Visualization
+
+- Recharts.
+- Framer Motion for restrained UI animations.
+
+## Backend
+
+- Supabase.
+- PostgreSQL.
+- Supabase Authentication.
+- Supabase Row Level Security.
+
+## Other Utilities
+
+- date-fns.
+- sonner for notifications.
+- Native browser print functionality with dedicated print CSS for PDF reports.
+
+Avoid installing unnecessary packages.
+
+# 3. DESIGN DIRECTION
+
+The product should look like a premium enterprise SaaS application combined with a sophisticated workflow design studio.
+
+The visual quality must be comparable to polished modern SaaS products, not a generic admin template.
+
+## Design Personality
+
+- Premium.
+- Minimalist.
+- Sophisticated.
+- Technical.
+- Clean.
+- Confident.
+- Intelligent.
+- Professional.
+
+## Color System
+
+Use this initial design palette:
+
+```css
+:root {
+  --background: #F7F8FC;
+  --surface: #FFFFFF;
+  --surface-secondary: #F1F2F8;
+
+  --foreground: #171827;
+  --foreground-muted: #747B8F;
+
+  --primary: #665CF0;
+  --primary-hover: #5549DF;
+
+  --success: #16A394;
+  --warning: #E9A23B;
+  --danger: #DC6262;
+
+  --border: #E8EAF1;
+}
+```
+
+Use CSS variables or design tokens consistently.
+
+## Typography
+
+- Geist Sans or Inter for general text.
+- Geist Mono for numerical metrics and technical metadata.
+
+## Design Principles
+
+1. Use a strong hierarchy between page titles, section titles, metrics, and secondary labels.
+2. Maintain consistent spacing.
+3. Use thin borders and subtle shadows.
+4. Keep the workspace spacious.
+5. Use color to communicate information, not merely decoration.
+6. Add subtle transitions and meaningful hover states.
+7. Keep charts readable and properly labeled.
+8. Ensure that all icons follow the same visual style.
+
+Avoid excessive gradients, glassmorphism, oversized cards, excessive rounded corners, unnecessary decorations, and random colors.
+
+The workflow builder should be the visual centerpiece of the entire product.
+
+# 4. APPLICATION ARCHITECTURE
+
+Organize the application using a clean, modular architecture.
+
+Suggested structure:
+
+```text
+src/
+├── app/
+│   ├── page.tsx
+│   ├── login/
+│   ├── signup/
+│   └── app/
+│       ├── page.tsx
+│       ├── processes/
+│       │   ├── page.tsx
+│       │   ├── new/
+│       │   └── [id]/
+│       │       ├── page.tsx
+│       │       ├── studio/
+│       │       ├── intelligence/
+│       │       ├── opportunities/
+│       │       ├── scenarios/
+│       │       └── reports/
+│       └── settings/
+│
+├── components/
+│   ├── layout/
+│   ├── dashboard/
+│   ├── process/
+│   ├── workflow/
+│   ├── intelligence/
+│   ├── opportunities/
+│   ├── scenarios/
+│   ├── reports/
+│   ├── charts/
+│   └── ui/
+│
+├── lib/
+│   ├── calculations/
+│   ├── analysis/
+│   ├── recommendations/
+│   ├── validations/
+│   ├── exports/
+│   ├── demo/
+│   ├── supabase/
+│   └── utils/
+│
+├── stores/
+│   ├── workflow-store.ts
+│   └── ui-store.ts
+│
+├── types/
+│   ├── process.ts
+│   ├── workflow.ts
+│   ├── scenario.ts
+│   └── analysis.ts
+│
+└── hooks/
+```
+
+You may adjust the folder structure when needed, but maintain separation between UI, business logic, data access, and validation.
+
+Do not put all application logic into one large component.
+
+# 5. APPLICATION LAYOUT
+
+Create a consistent application shell.
+
+## Sidebar
+
+The sidebar should contain:
+
+- FLOWPRINT logo.
+- Dashboard.
+- Process Library.
+- Reports.
+- Settings.
+- User profile.
+
+Use a compact, elegant navigation design.
+
+The active navigation item must be clearly distinguishable.
+
+## Topbar
+
+Include:
+
+- Breadcrumb navigation.
+- Current workspace or project context.
+- Search control where applicable.
+- Notification indicator.
+- User menu.
+
+## Main Workspace
+
+Use a flexible content area with consistent maximum widths, responsive layouts, and appropriate spacing.
+
+For process-specific pages, provide secondary navigation:
+
+- Overview.
+- Studio.
+- Intelligence.
+- Opportunities.
+- Scenarios.
+- Reports.
+
+The navigation must remain consistent across the process modules.
+
+# 6. LANDING PAGE
+
+Create a sophisticated SaaS landing page.
+
+It must contain:
+
+## Hero Section
+
+Headline:
+
+"Turn Operational Complexity Into Intelligent Workflows."
+
+Supporting description:
+
+"Map your processes, uncover hidden inefficiencies, and discover where automation can create measurable impact."
+
+Primary CTA:
+"Explore Live Demo"
+
+Secondary CTA:
+"Discover How It Works"
+
+Include a visually compelling workflow canvas illustration or interactive product preview.
+
+Do not use generic stock illustrations.
+
+## Product Preview Section
+
+Show a realistic preview of:
+
+- Workflow canvas.
+- Automation opportunity analysis.
+- Before vs After simulation.
+
+## How It Works Section
+
+Present the five-step process:
+
+1. Map.
+2. Analyze.
+3. Discover.
+4. Optimize.
+5. Measure.
+
+## Additional Sections
+
+- Product capabilities.
+- Example use cases.
+- Business impact.
+- Final CTA.
+- Professional footer.
+
+The landing page must connect to the actual application.
+
+# 7. DASHBOARD
+
+Route: `/app`
+
+Build a real dashboard using process data.
+
+## KPI Cards
+
+Display:
+
+- Total Processes.
+- Analyzed Processes.
+- High-Priority Opportunities.
+- Potential Monthly Hours Saved.
+
+Each KPI must be calculated from available process and scenario data.
+
+Never use fake hardcoded KPI values.
+
+## Dashboard Sections
+
+### Recent Processes
+
+Display recently created or updated process cards.
+
+Each card should show:
+
+- Process name.
+- Department.
+- Number of activities.
+- Last updated date.
+- Analysis status.
+- Link to process overview.
+
+### Automation Opportunities
+
+Highlight the highest-priority opportunities across the available processes.
+
+### Process Improvement Overview
+
+Show aggregated workload and estimated operational improvement metrics.
+
+### Recent Activity
+
+Show events such as:
+- Process created.
+- Process analyzed.
+- Scenario created.
+- Report generated.
+
+If no activity exists, display a useful empty state.
+
+# 8. PROCESS LIBRARY
+
+Route: `/app/processes`
+
+Create a polished process management interface.
+
+Features:
+
+- Grid/list view toggle.
+- Search.
+- Department filter.
+- Status filter.
+- Sorting.
+- Create process button.
+- Duplicate process.
+- Delete process with confirmation.
+- Open process overview.
+
+Process status:
+
+- Draft.
+- Ready for Analysis.
+- Analyzed.
+- Improvement Planned.
+
+The status should reflect real process state rather than arbitrary labels.
+
+# 9. PROCESS CREATION
+
+Route: `/app/processes/new`
+
+Create an intuitive creation experience.
+
+Required fields:
+
+- Process Name.
+- Description.
+- Department.
+- Monthly Execution Volume.
+- Currency.
+- Hourly Labor Cost.
+
+Currency should default to IDR but allow the user to change it.
+
+Validate all fields.
+
+Provide a template selection option using example processes.
+
+When the user submits the form, create the process and navigate to Process Studio.
+
+# 10. PROCESS STUDIO — THE CORE EXPERIENCE
+
+Route: `/app/processes/[id]/studio`
+
+This is the most important feature of FLOWPRINT.
+
+Build a genuinely interactive workflow editor using `@xyflow/react`.
+
+The canvas must not be a static diagram.
+
+## Studio Layout
+
+Use three main sections.
+
+### A. Left Node Library
+
+A compact component palette containing:
+
+**Start Node**
+- Represents the beginning of a process.
+
+**Activity Node**
+- Represents a business activity.
+
+**Waiting Node**
+- Represents time spent waiting for an approval, response, external action, or another dependency.
+
+**End Node**
+- Represents the completion of a process.
+
+Users must be able to drag nodes onto the canvas or add them through clear interactive controls.
+
+### B. Central Workflow Canvas
+
+Requirements:
+
+- React Flow canvas.
+- Custom node components.
+- Directional edges.
+- Drag-and-drop.
+- Zoom controls.
+- Pan.
+- Mini-map.
+- Fit view.
+- Grid background.
+- Node selection.
+- Node deletion.
+- Node duplication.
+- Edge deletion.
+- Keyboard shortcuts.
+- Undo/redo.
+- Auto-save.
+
+Make the canvas responsive within its application workspace.
+
+Use consistent node styling with readable labels.
+
+### C. Right Node Inspector
+
+Display the properties of the selected node.
+
+For Activity Nodes, support:
+
+- Activity Name.
+- Description.
+- Responsible Role.
+- Execution Mode.
+- Human Effort in Minutes.
+- Waiting Time in Minutes.
+- Current System or Tool.
+- Repetition Score (1–5).
+- Standardization Score (1–5).
+- Error Impact (1–5).
+- Digital Integration Readiness (1–5).
+
+For Waiting Nodes, support:
+
+- Waiting Name.
+- Description.
+- Waiting Duration.
+- Responsible Department.
+
+For Start and End Nodes, allow label editing.
+
+All changes must update the selected node and the workflow state.
+
+### Workflow Validation
+
+Before analysis, validate:
+
+- Exactly one Start Node.
+- Exactly one End Node.
+- All activities belong to one connected linear path.
+- No disconnected nodes.
+- No cycles.
+- No invalid connections.
+- A valid path exists from Start to End.
+
+The MVP should support linear execution only.
+
+Do not implement complex branching or BPMN gateways in the first version.
+
+Display helpful validation messages and highlight problematic nodes.
+
+### Workflow State
+
+Store:
+
+- Nodes.
+- Edges.
+- Positions.
+- Node properties.
+- Viewport information where practical.
+- Graph schema version.
+
+Implement debounced autosave.
+
+Display visible states:
+
+- Saving.
+- Saved.
+- Save failed.
+
+Do not silently discard user changes.
+
+# 11. PROCESS INTELLIGENCE
+
+Route: `/app/processes/[id]/intelligence`
+
+Create an analytical interface that operates on real workflow data.
+
+## Summary Metrics
+
+Display:
+
+- Total Activities.
+- Manual Activities.
+- Semi-Automated Activities.
+- Automated Activities.
+- Total Human Effort per Execution.
+- Total Waiting Time per Execution.
+- Total Cycle Time.
+- Estimated Monthly Labor Hours.
+- Estimated Monthly Labor Cost.
+
+## Charts
+
+Use Recharts to create:
+
+1. Activity Distribution by Execution Mode.
+2. Human Effort vs Waiting Time.
+3. Workload Distribution by Activity.
+4. Operational Contribution by Department or Role.
+
+Use clear legends, tooltips, proper formatting, and responsive chart containers.
+
+Do not create visually attractive but meaningless charts.
+
+## Bottleneck Detection
+
+Identify:
+
+- Excessive waiting.
+- High human effort.
+- High repetition.
+- Manual data entry.
+- High error impact.
+- Potential duplicate activities.
+
+Every finding must have an explanation based on actual input data.
+
+Each bottleneck card must contain:
+
+- Activity name.
+- Issue category.
+- Relevant metric.
+- Explanation.
+- Recommended improvement.
+- Navigation to the corresponding workflow node when applicable.
+
+Do not fabricate bottlenecks.
+
+# 12. AUTOMATION DISCOVERY ENGINE
+
+Route: `/app/processes/[id]/opportunities`
+
+Build a deterministic, rule-based analysis engine.
+
+This is not an AI chatbot.
+
+The recommendation engine must analyze activity properties and produce transparent improvement recommendations.
+
+## Opportunity Scoring Formula
+
+Total score: 0–100.
+
+| Factor | Weight |
+|---|---:|
+| Monthly Volume | 20 |
+| Manual Work Intensity | 20 |
+| Repetitiveness | 20 |
+| Standardization | 15 |
+| Waiting Time | 10 |
+| Error Impact | 10 |
+| Digital Integration Readiness | 5 |
+
+Use these formulas:
+
+```ts
+volumeScore = Math.min(monthlyVolume / 500, 1);
+
+manualScore =
+  workMode === "manual" ? 1 :
+  workMode === "semi_automated" ? 0.5 : 0;
+
+repeatabilityScore = (repeatability - 1) / 4;
+
+standardizationScore = (standardization - 1) / 4;
+
+waitingScore = Math.min(waitMinutes / 120, 1);
+
+errorScore = (errorImpact - 1) / 4;
+
+integrationScore = (integrationReadiness - 1) / 4;
+
+opportunityScore =
+  volumeScore * 20 +
+  manualScore * 20 +
+  repeatabilityScore * 20 +
+  standardizationScore * 15 +
+  waitingScore * 10 +
+  errorScore * 10 +
+  integrationScore * 5;
+```
+
+Validate and clamp all inputs before calculating.
+
+Round displayed scores to the nearest whole number.
+
+## Opportunity Classifications
+
+- 75–100: High Priority.
+- 55–74: Medium Priority.
+- 0–54: Low Priority.
+
+Label this score as an opportunity prioritization heuristic.
+
+Do not present it as a probability of automation success.
+
+## Recommendation Rules
+
+Create rules for:
+
+### Automate
+
+Prioritize activities with:
+- High monthly volume.
+- Manual execution.
+- High repeatability.
+- High standardization.
+- Digital integration readiness.
+
+### Simplify
+
+Flag a process when the user has identified unnecessary complexity, redundant steps, or excessive effort.
+
+Do not assume a step is unnecessary just because it takes a long time.
+
+### Standardize
+
+Prioritize tasks with low standardization.
+
+### Integrate
+
+Identify tasks involving repeated transfers between digital systems.
+
+### Reduce Waiting
+
+Identify significant waiting periods and explain the likely operational effect.
+
+## Opportunity Cards
+
+Every recommendation card must include:
+
+- Activity name.
+- Score.
+- Priority.
+- Recommendation category.
+- Explanation.
+- Contributing factors.
+- Recommended next action.
+- Estimated improvement focus.
+- Add to Scenario button.
+- Dismiss button.
+
+Provide filtering by category and priority.
+
+Users must be able to inspect the reasoning behind each recommendation.
+
+# 13. SCENARIO SIMULATOR
+
+Route: `/app/processes/[id]/scenarios`
+
+This feature must deliver the strongest product experience.
+
+Allow users to create a proposed future process without changing the original baseline.
+
+## Scenario Workflow
+
+1. Select an existing process.
+2. Create a new scenario.
+3. Duplicate the baseline workflow.
+4. Apply an improvement recommendation.
+5. Edit the new workflow.
+6. Adjust time and execution-mode assumptions.
+7. Save the scenario.
+8. Compare with the baseline.
+
+## Scenario Properties
+
+- Scenario Name.
+- Description.
+- Adoption Rate.
+- One-Time Implementation Cost.
+
+## Before vs After Comparison
+
+Display:
+
+| Metric | Current | Proposed |
+|---|---|---|
+| Total Activities | Real calculation | Real calculation |
+| Manual Activities | Real calculation | Real calculation |
+| Human Effort per Run | Real calculation | Real calculation |
+| Waiting Time per Run | Real calculation | Real calculation |
+| Monthly Labor Hours | Real calculation | Real calculation |
+| Monthly Labor Cost | Real calculation | Real calculation |
+
+Use clear before-and-after visualizations.
+
+Highlight:
+- Time saved.
+- Reduced manual effort.
+- Reduced waiting time.
+- Estimated monthly cost savings.
+
+## Financial Calculations
+
+```ts
+baselineMonthlyHours =
+  (baselineHumanEffortMinutes / 60) * monthlyVolume;
+
+proposedMonthlyHours =
+  (proposedHumanEffortMinutes / 60) * monthlyVolume;
+
+monthlyHoursDifference =
+  baselineMonthlyHours - proposedMonthlyHours;
+
+potentialMonthlyHoursSaved =
+  monthlyHoursDifference * adoptionRate;
+
+potentialMonthlyCostSavings =
+  potentialMonthlyHoursSaved * hourlyLaborCost;
+
+paybackMonths =
+  implementationCost / potentialMonthlyCostSavings;
+```
+
+Adoption rate must be represented as a decimal from 0 to 1 internally.
+
+If savings are zero or negative:
+- Do not display a misleading positive saving.
+- Do not calculate a misleading payback period.
+- Explain why the scenario does not currently generate positive estimated savings.
+
+Always identify all results as estimates.
+
+## Scenario Management
+
+Support:
+
+- Create.
+- Rename.
+- Duplicate.
+- Delete.
+- Save.
+- Compare.
+- Return to baseline.
+
+Ensure that editing a proposed process never overwrites the original graph.
+
+# 14. EXECUTIVE REPORTING
+
+Route: `/app/processes/[id]/reports`
+
+Create a professional report preview and export environment.
+
+The report must resemble a polished consulting deliverable.
+
+## Report Structure
+
+1. Cover Page.
+2. Executive Summary.
+3. Process Overview.
+4. As-Is Workflow Diagram.
+5. Process Metrics.
+6. Bottleneck Analysis.
+7. Automation Opportunity Matrix.
+8. To-Be Workflow Diagram.
+9. Before vs After Comparison.
+10. Estimated Financial Impact.
+11. Methodology and Assumptions.
+12. Recommended Next Steps.
+
+## Export Capabilities
+
+Implement:
+
+- Browser-based PDF printing using `window.print()` and dedicated print styles.
+- JSON export of the process graph.
+- CSV export of metrics and recommendations.
+
+The report must support clean A4 printing.
+
+Hide interactive navigation and editing controls from the print version.
+
+Include:
+- Process title.
+- Reporting date.
+- Department.
+- Author or workspace details when available.
+- Clear distinction between measured inputs and calculated estimates.
+
+Do not create a fake PDF download button without implementing its action.
+
+# 15. DEMO DATA
+
+The first application visit must offer a meaningful experience.
+
+Create three example business processes.
+
+## Example 1: Employee Reimbursement
+
+Activities:
+1. Employee fills reimbursement form.
+2. Employee submits supporting documents.
+3. Admin verifies documentation.
+4. Manager approves request.
+5. Finance records the transaction.
+6. Finance processes payment.
+
+Include realistic example values for:
+- Human effort.
+- Waiting time.
+- Monthly volume.
+- Execution mode.
+- Repetition.
+- Standardization.
+- Error impact.
+- Integration readiness.
+
+## Example 2: Employee Onboarding
+
+Activities:
+1. HR receives employee information.
+2. HR verifies documentation.
+3. IT prepares employee accounts.
+4. Manager assigns responsibilities.
+5. Employee completes onboarding.
+
+## Example 3: Purchase Request Approval
+
+Activities:
+1. Employee submits purchase request.
+2. Procurement reviews the request.
+3. Manager approves the request.
+4. Procurement contacts suppliers.
+5. Finance processes the payment.
+
+All sample values must be explicitly presented as illustrative demo data.
+
+Seed the dashboard with these processes so the user can explore all modules without creating a process first.
+
+# 16. DATABASE AND PERSISTENCE
+
+Use Supabase as the production persistence layer.
+
+Create SQL migrations for:
+
+## Workspaces
+
+- id
+- name
+- owner_id
+- created_at
+- updated_at
+
+## Processes
+
+- id
+- workspace_id
+- name
+- description
+- department
+- monthly_volume
+- currency
+- hourly_labor_cost
+- graph_json
+- graph_schema_version
+- created_at
+- updated_at
+
+## Scenarios
+
+- id
+- process_id
+- name
+- description
+- graph_json
+- adoption_rate
+- implementation_cost
+- created_at
+- updated_at
+
+Use UUIDs.
+
+Use JSONB for graph storage.
+
+Implement appropriate foreign keys, indexes, timestamps, and validation.
+
+## Security
+
+Implement Row Level Security for user-owned workspaces, processes, and scenarios.
+
+A user must never be able to read, modify, or delete another user's data.
+
+Use server-side authorization checks.
+
+Never expose Supabase service-role credentials in frontend code.
+
+Use the current official Supabase SSR integration pattern for the installed Next.js version.
+
+# 17. LOCAL DEMO MODE
+
+The application must remain usable even when Supabase environment variables have not been configured.
+
+Implement an explicit demo mode.
+
+Requirements:
+
+- Seed the three example processes.
+- Store demo changes in local browser storage.
+- Allow users to test the workflow editor, analysis, scenarios, and reporting.
+- Clearly display a "Demo Mode" indicator.
+- Explain that demo data is stored locally.
+- Do not pretend that demo data is synced to a backend.
+
+When valid Supabase configuration is available, use Supabase persistence and authentication.
+
+Implement a clean repository/data-access abstraction so the UI does not need to know whether data is coming from the demo repository or Supabase.
+
+Do not build a fake authentication flow.
+
+# 18. UX REQUIREMENTS
+
+Every interactive component must have a real function.
+
+Implement:
+
+- Loading states.
+- Skeleton states.
+- Empty states.
+- Error states.
+- Success notifications.
+- Confirmation dialogs.
+- Form validation.
+- Field-level error messages.
+- Helpful tooltips.
+- Keyboard focus indicators.
+- Accessible labels.
+- Responsive menus.
+- Clear save-state feedback.
+
+Never leave primary buttons non-functional.
+
+Avoid placeholder charts.
+
+Avoid empty pages.
+
+Avoid fake statistics.
+
+Avoid broken routes.
+
+Avoid buttons that only trigger a toast without completing the corresponding action.
+
+# 19. RESPONSIVE REQUIREMENTS
+
+Prioritize desktop because the workflow canvas requires space.
+
+Also support tablet and mobile.
+
+Desktop:
+- Full sidebar.
+- Three-panel workflow editor.
+- Large canvas.
+- Contextual inspector.
+
+Tablet:
+- Collapsible sidebar.
+- Adapted editor panel widths.
+- Drawer-based inspector when needed.
+
+Mobile:
+- Compact navigation.
+- Readable dashboard.
+- Stacked analytics.
+- Mobile-friendly form inputs.
+- View and basic editing capabilities for workflows.
+
+The application should never overflow horizontally unintentionally.
+
+# 20. QUALITY ASSURANCE
+
+Create meaningful tests for core business logic.
+
+At minimum test:
+
+1. Process workflow validation.
+2. Invalid graph detection.
+3. Human effort calculation.
+4. Waiting time calculation.
+5. Monthly workload calculation.
+6. Monthly cost calculation.
+7. Opportunity score calculation.
+8. Opportunity classification.
+9. Recommendation generation.
+10. Before/after scenario calculations.
+11. Negative and zero savings cases.
+12. Payback calculations.
+
+Use a suitable test framework such as Vitest for unit tests.
+
+Also verify the primary application journey:
+
+- Open demo.
+- Create process.
+- Edit workflow.
+- Save workflow.
+- Run analysis.
+- View opportunities.
+- Create scenario.
+- Compare metrics.
+- Generate report.
+
+Run TypeScript checking, linting, tests, and production build.
+
+Resolve critical errors before considering the application complete.
+
+# 21. IMPLEMENTATION STRATEGY
+
+Build this in organized phases.
+
+Do not attempt to create disconnected features simultaneously.
+
+## Phase 1 — Foundation
+
+- Inspect the existing repository.
+- Set up architecture.
+- Configure TypeScript.
+- Configure Tailwind.
+- Establish design tokens.
+- Build layout.
+- Build landing page.
+- Build responsive sidebar and topbar.
+
+## Phase 2 — Dashboard and Process Management
+
+- Dashboard.
+- Process library.
+- Process creation.
+- Demo dataset.
+- Process overview.
+- Persistent application state.
+
+## Phase 3 — Process Studio
+
+- React Flow integration.
+- Custom nodes.
+- Node palette.
+- Node inspector.
+- Edge management.
+- Validation.
+- Undo/redo.
+- Autosave.
+
+## Phase 4 — Process Intelligence
+
+- Centralized calculation services.
+- Operational metrics.
+- Bottleneck detection.
+- Analytical visualizations.
+
+## Phase 5 — Automation Discovery
+
+- Opportunity score engine.
+- Recommendation rules.
+- Opportunity cards.
+- Recommendation filters.
+- Scenario handoff.
+
+## Phase 6 — Scenario Simulator
+
+- Scenario cloning.
+- To-Be editing.
+- Before/after comparison.
+- Financial calculations.
+- Scenario persistence.
+
+## Phase 7 — Executive Reporting
+
+- Report generation.
+- Report preview.
+- Print stylesheet.
+- JSON export.
+- CSV export.
+
+## Phase 8 — Backend and Quality Assurance
+
+- Supabase integration.
+- Authentication.
+- Database migrations.
+- RLS policies.
+- Demo mode verification.
+- Responsive review.
+- Automated tests.
+- Production build.
+
+Prioritize the complete working user journey over implementing many superficial features.
+
+# 22. STRICT DEVELOPMENT RULES
+
+These requirements are mandatory:
+
+1. Do not return only a design or a development plan. Implement the application.
+2. Do not replace an existing project without inspecting its repository first.
+3. Preserve existing functionality unless it must be changed for a documented reason.
+4. Use TypeScript throughout the application.
+5. Keep business calculations separate from UI components.
+6. Do not hardcode dashboard metrics.
+7. Do not fabricate analysis results.
+8. Do not pretend heuristic recommendations are AI predictions.
+9. Do not implement actual external automation integrations in the MVP.
+10. Never overwrite the original process when editing a scenario.
+11. Never silently discard unsaved workflow changes.
+12. Make every primary interaction functional.
+13. Include realistic demo data.
+14. Avoid unnecessary complexity and dependencies.
+15. Maintain clean component boundaries.
+16. Make the interface visually consistent.
+17. Follow current official documentation for framework integrations.
+18. Do not report tests as passing unless they have actually been executed.
+
+When encountering missing configuration, implement a clear and functional fallback instead of leaving the application unusable.
+
+When encountering an ambiguous minor detail, make a sensible product decision and continue development rather than stopping for unnecessary clarification.
+
+# 23. FINAL DELIVERABLES
+
+At completion, provide:
+
+1. A fully functional FLOWPRINT web application.
+2. Complete responsive UI.
+3. Working interactive workflow builder.
+4. Working process analysis engine.
+5. Working automation opportunity engine.
+6. Working scenario simulator.
+7. Working before/after comparison.
+8. Working report generation and exports.
+9. Supabase database schema and migrations.
+10. Row Level Security policies.
+11. Demo mode with sample workflows.
+12. Environment variable example file.
+13. README with installation and setup instructions.
+14. Documentation of calculation formulas.
+15. Test results and production build status.
+
+The final result should be suitable for:
+
+- A professional software development portfolio.
+- A business analyst portfolio.
+- A project management portfolio.
+- Demonstrating process improvement knowledge.
+- Demonstrating TypeScript and frontend engineering.
+- Presenting a potential SaaS product concept.
+
+---
+
+# FINAL PRODUCT STANDARD
+
+The final product should feel like an actual early-stage SaaS startup product.
+
+When a user opens FLOWPRINT, the first impression should be:
+
+"This is a serious process intelligence platform."
+
+When a user opens Process Studio, the impression should be:
+
+"This is a powerful workflow design environment."
+
+When a user opens Automation Discovery, the impression should be:
+
+"This tool can help identify where operational improvement should happen."
+
+When a user opens Scenario Simulator, the impression should be:
+
+"I can evaluate the impact of process changes before implementing them."
+
+When a user generates a report, the output should feel like a professional business consulting deliverable.
+
+**Build FLOWPRINT as one cohesive product, not a collection of unrelated pages.**

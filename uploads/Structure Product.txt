@@ -1,0 +1,33 @@
+Saya membaginya menjadi lima modul utama.
+
+01. Process Studio
+
+Membangun dan memvisualisasikan proses bisnis menggunakan drag-and-drop canvas.
+
+
+
+
+02. Process Intelligence
+
+Menganalisis bottleneck, aktivitas manual, repetisi, waktu tunggu, dan potensi inefisiensi.
+
+
+
+
+03. Automation Discovery
+
+Memberikan rekomendasi automasi berdasarkan karakteristik aktivitas dan aturan analisis.
+
+
+
+
+04. Scenario Simulator
+
+Membandingkan proses saat ini dan proses target berdasarkan asumsi perubahan.
+
+
+
+
+05. Executive Reporting
+
+Menghasilkan laporan analisis, rekomendasi, dan business case untuk pengambilan keputusan.

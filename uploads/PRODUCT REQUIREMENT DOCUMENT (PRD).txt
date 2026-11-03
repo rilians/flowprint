@@ -1,0 +1,924 @@
+# FLOWPRINT — Product Requirements Document (PRD)
+
+**Product Name:** FLOWPRINT  
+**Product Category:** Business Process Intelligence & Automation Opportunity Platform  
+**Tagline:** See the Work. Find the Waste. Design What's Next.  
+**Document Version:** 1.0  
+**Product Stage:** MVP / Portfolio Flagship  
+**Primary Platform:** Web Application  
+**Primary Language:** English (with architecture ready for Indonesian localization)
+
+---
+
+# 1. Executive Summary
+
+FLOWPRINT is a web-based business process intelligence platform designed to help organizations understand, analyze, and optimize their operational workflows.
+
+The platform enables users to visually map existing business processes, measure operational effort, identify bottlenecks, discover automation opportunities, simulate improved workflows, and generate structured optimization reports.
+
+Unlike conventional project management software, FLOWPRINT does not primarily manage tasks or employee productivity. Its core purpose is to analyze how work is performed and identify how that work can be simplified, standardized, or automated.
+
+The product transforms process improvement from a subjective activity into a structured, measurable, and evidence-supported decision-making process.
+
+## Product Vision
+
+Make business process improvement understandable, measurable, and accessible through visual process intelligence.
+
+## Core Value Proposition
+
+FLOWPRINT helps users answer five important questions:
+
+1. How does our current process actually work?
+2. Where are the inefficiencies and bottlenecks?
+3. Which activities should be simplified or automated first?
+4. What would the improved process look like?
+5. How much time and operational cost could potentially be saved?
+
+---
+
+# 2. Problem Statement
+
+Many organizations still perform repetitive operational activities using manual procedures, spreadsheets, emails, and disconnected tools.
+
+These conditions create several problems:
+
+- Business processes are poorly documented.
+- Repetitive activities consume unnecessary working hours.
+- Managers cannot easily identify operational bottlenecks.
+- Automation initiatives are often selected without sufficient analysis.
+- Organizations struggle to estimate the potential benefits of process improvement.
+- Process documentation and management reports are disconnected from operational data.
+
+There is a need for a platform that connects process visualization, operational analysis, automation discovery, and impact simulation in one environment.
+
+## Proposed Solution
+
+FLOWPRINT provides an integrated environment where users can document current workflows, analyze operational characteristics, receive rule-based improvement recommendations, and construct optimized future workflows.
+
+---
+
+# 3. Target Users
+
+## Primary Personas
+
+### A. Business Analyst
+Needs to document business processes, analyze operational requirements, identify inefficiencies, and prepare improvement recommendations.
+
+### B. Operations Manager
+Needs to understand operational bottlenecks, reduce repetitive work, and evaluate efficiency improvement opportunities.
+
+### C. Process Improvement Specialist
+Needs to map As-Is and To-Be processes, evaluate automation potential, and communicate improvement proposals to management.
+
+### D. Small Business Owner
+Needs to understand daily operational procedures and discover opportunities to reduce unnecessary manual work.
+
+## User Experience Priorities
+
+- No advanced technical knowledge should be required.
+- Process mapping must be intuitive.
+- Every recommendation must explain why it was generated.
+- Financial and time estimates must be transparent.
+- Users must be able to modify assumptions.
+
+---
+
+# 4. Product Objectives and Success Metrics
+
+## Product Objectives
+
+1. Enable users to create business process maps without specialized diagramming knowledge.
+2. Provide measurable insights into manual effort, waiting time, and operational costs.
+3. Identify activities with high automation potential.
+4. Support the creation of improved process scenarios.
+5. Compare current and proposed workflows.
+6. Generate professional process improvement reports.
+
+## Product Success Metrics
+
+| Metric | MVP Success Criteria |
+|---|---|
+| Process creation | User can create and save a valid workflow |
+| Process analysis | All valid activity nodes are analyzed |
+| Recommendation transparency | Every recommendation displays its contributing factors |
+| Simulation | Before/after calculations update dynamically |
+| Report generation | User can generate a printable report |
+| Persistence | Saved projects remain available after reload |
+| Reliability | No critical errors in primary user journeys |
+
+These are product acceptance targets, not claims of achieved performance.
+
+---
+
+# 5. Core Product Modules
+
+## MODULE 01 — Process Studio
+
+### Purpose
+Provide a visual environment for creating and editing business process workflows.
+
+### Main Interface
+
+The Process Studio consists of three primary sections:
+
+**A. Left Panel — Node Library**
+
+Available components:
+
+- Start Node
+- Activity Node
+- Waiting Node
+- End Node
+
+Each component can be dragged onto the canvas.
+
+**B. Center Panel — Workflow Canvas**
+
+The primary workspace where users construct process maps.
+
+Required capabilities:
+
+- Drag-and-drop node placement.
+- Connect nodes using directional edges.
+- Move and reposition nodes.
+- Zoom in and out.
+- Pan across the canvas.
+- Grid background.
+- Mini-map.
+- Fit-to-screen control.
+- Delete and duplicate nodes.
+- Undo and redo.
+- Save and restore workflow state.
+
+**C. Right Panel — Node Inspector**
+
+When a node is selected, display its editable properties.
+
+For Activity Nodes:
+
+| Property | Description |
+|---|---|
+| Activity Name | Name of the operational activity |
+| Description | Activity explanation |
+| Responsible Role | Person or department responsible |
+| Execution Mode | Manual, Semi-Automated, Automated |
+| Human Effort | Hands-on working time in minutes |
+| Waiting Time | Time spent waiting in minutes |
+| System / Tool | Application or tool currently used |
+| Repetition Score | Repetitiveness, scale 1–5 |
+| Standardization Score | How standardized the task is, scale 1–5 |
+| Error Impact | Operational impact of errors, scale 1–5 |
+
+For Waiting Nodes:
+
+- Waiting Activity Name
+- Description
+- Waiting Duration
+- Responsible Department (optional)
+
+Start and End Nodes only require a label.
+
+### Workflow Validation
+
+A valid MVP workflow must:
+
+- Contain exactly one Start Node.
+- Contain exactly one End Node.
+- Have a valid connected path from Start to End.
+- Contain no cycles.
+- Have no disconnected activity nodes.
+- Follow a linear execution sequence.
+
+The MVP intentionally uses linear workflows. Branching and gateway logic are reserved for a future release so that time and cost calculations remain predictable and transparent.
+
+### Autosave
+
+- Automatically save changes after a short debounce period.
+- Show saving, saved, and save-error indicators.
+- Restore the previous saved workflow when the user reopens the project.
+- Avoid data loss when switching modules.
+
+---
+
+## MODULE 02 — Process Intelligence
+
+### Purpose
+Analyze the operational characteristics of a process and identify opportunities for improvement.
+
+### A. Process Overview Metrics
+
+Display:
+
+1. Total Activities
+2. Manual Activities
+3. Semi-Automated Activities
+4. Automated Activities
+5. Total Human Effort
+6. Total Waiting Time
+7. Estimated Monthly Labor Hours
+8. Estimated Monthly Labor Cost
+
+### B. Bottleneck Detection
+
+Identify potential bottlenecks based on:
+
+- Long waiting periods.
+- High human effort.
+- High frequency of repetitive work.
+- Manual activities involving multiple departments.
+- Repeated data entry.
+- Activities with high error impact.
+
+Each bottleneck must contain:
+
+- Activity name.
+- Bottleneck category.
+- Relevant input data.
+- Explanation.
+- Suggested improvement action.
+
+### C. Process Efficiency Indicators
+
+Display:
+
+**Manual Work Ratio**
+
+Percentage of manually executed activities relative to all activity nodes.
+
+**Waiting Time Ratio**
+
+Percentage of process elapsed time attributable to waiting.
+
+**Human Effort**
+
+Total hands-on working time required for one process execution.
+
+**Estimated Monthly Workload**
+
+Human effort multiplied by monthly process volume.
+
+All measurements must distinguish between user-entered facts and calculated estimates.
+
+---
+
+## MODULE 03 — Automation Discovery
+
+### Purpose
+Identify activities that should be considered for automation, simplification, integration, or standardization.
+
+### Automation Opportunity Score
+
+Every Activity Node receives a score from 0 to 100.
+
+The score is calculated using the following transparent heuristic:
+
+| Factor | Weight |
+|---|---:|
+| Monthly Process Volume | 20 |
+| Manual Work Intensity | 20 |
+| Repetitiveness | 20 |
+| Standardization Readiness | 15 |
+| Waiting Time | 10 |
+| Error Impact | 10 |
+| Digital Integration Readiness | 5 |
+| **Total** | **100** |
+
+Scoring rules:
+
+- Every factor is normalized to a range of 0–1.
+- The final score is the sum of each normalized factor multiplied by its weight.
+- Manual work receives a higher score than semi-automated or fully automated work.
+- High-frequency, repeatable, standardized activities receive higher priority.
+- Long waiting time and high error impact contribute to improvement priority.
+
+For the monthly volume factor:
+
+`Volume Score = min(monthlyVolume / 500, 1)`
+
+For 1–5 scale inputs:
+
+`Normalized Score = (value - 1) / 4`
+
+For manual work intensity:
+
+- Manual = 1
+- Semi-Automated = 0.5
+- Automated = 0
+
+For waiting time:
+
+`Waiting Score = min(waitMinutes / 120, 1)`
+
+Digital integration readiness uses a 1–5 scale.
+
+### Opportunity Classification
+
+| Score | Classification |
+|---|---|
+| 75–100 | High Priority |
+| 55–74 | Medium Priority |
+| 0–54 | Low Priority |
+
+The score is a prioritization heuristic, not a statistical prediction of automation success.
+
+### Recommendation Categories
+
+The rule-based recommendation engine can recommend:
+
+**1. Automate**
+
+For repetitive, high-volume, standardized manual activities.
+
+**2. Simplify**
+
+For activities with unnecessary complexity or excessive operational effort, when the user has identified that complexity.
+
+**3. Standardize**
+
+For activities with low standardization readiness.
+
+**4. Integrate**
+
+For activities involving repeated data transfer between systems.
+
+**5. Reduce Waiting**
+
+For activities with significant waiting periods.
+
+### Recommendation Card
+
+Each card must display:
+
+- Activity name.
+- Opportunity score.
+- Priority classification.
+- Recommendation category.
+- Reason for recommendation.
+- Evidence from process input fields.
+- Suggested solution.
+- Potential impact.
+- Action button: Add to Scenario.
+- Action button: Dismiss.
+
+Users must be able to review, accept, dismiss, or revisit recommendations.
+
+Do not use AI-generated claims or fabricate operational insights. The MVP uses a deterministic rule engine. An AI integration may be added in a future version.
+
+---
+
+## MODULE 04 — Scenario Simulator
+
+### Purpose
+Allow users to construct and compare an improved process against the existing process.
+
+This is one of FLOWPRINT's most important differentiators.
+
+### A. Scenario Creation
+
+Users can:
+
+- Create a new improvement scenario.
+- Duplicate the existing workflow.
+- Add, remove, or rearrange activities.
+- Modify activity execution modes.
+- Modify human effort.
+- Modify waiting times.
+- Apply recommended improvements.
+
+The original As-Is process must remain unchanged.
+
+### B. Before vs After Comparison
+
+Display side-by-side comparisons of:
+
+| Indicator | Current Process | Proposed Process |
+|---|---|---|
+| Total Activities | Calculated | Calculated |
+| Manual Activities | Calculated | Calculated |
+| Human Effort / Run | Calculated | Calculated |
+| Waiting Time / Run | Calculated | Calculated |
+| Monthly Labor Hours | Calculated | Calculated |
+| Monthly Labor Cost | Calculated | Calculated |
+
+### C. Impact Estimation
+
+Calculate:
+
+**Time Saved per Execution**
+
+`Current Human Effort - Proposed Human Effort`
+
+**Monthly Hours Saved**
+
+`(Current Effort - Proposed Effort) × Monthly Volume / 60`
+
+**Potential Monthly Hours Saved After Adoption**
+
+`Monthly Hours Saved × Adoption Rate`
+
+**Potential Monthly Cost Savings**
+
+`Potential Monthly Hours Saved After Adoption × Hourly Labor Cost`
+
+**Estimated Payback Period**
+
+`One-Time Implementation Cost / Potential Monthly Cost Savings`
+
+Return an unavailable or not-applicable result when savings are zero or negative.
+
+### D. User-Adjustable Assumptions
+
+- Monthly execution volume.
+- Hourly labor cost.
+- Estimated adoption rate.
+- One-time implementation cost.
+
+Clearly label the results as estimates based on user-defined assumptions.
+
+### E. Scenario Management
+
+Users can:
+
+- Save multiple scenarios.
+- Rename scenarios.
+- Duplicate scenarios.
+- Delete scenarios.
+- Compare a selected scenario with the baseline.
+- Return to the original process.
+
+---
+
+## MODULE 05 — Executive Reporting
+
+### Purpose
+Turn process analysis into a professional document that can be shared with stakeholders.
+
+### Report Sections
+
+1. Executive Summary
+2. Process Overview
+3. Current Process Map
+4. Operational Metrics
+5. Bottleneck Analysis
+6. Automation Opportunities
+7. Proposed Process Map
+8. Before vs After Comparison
+9. Estimated Cost and Time Impact
+10. Assumptions and Methodology
+11. Recommended Next Steps
+
+### Reporting Capabilities
+
+- Preview before export.
+- Printable report layout.
+- Export as PDF through the browser print flow.
+- Export process data as JSON.
+- Export metrics and recommendations as CSV.
+- Include generated date and project details.
+- Include a clear disclaimer distinguishing measured inputs from estimates.
+
+Reports must look like professional business analysis documents, not simple browser screenshots.
+
+---
+
+# 6. Main User Journey
+
+The primary user journey is:
+
+**Step 1 — Create a Process**
+
+The user creates a new process and fills in basic information:
+
+- Process name.
+- Description.
+- Department.
+- Monthly execution volume.
+- Hourly labor cost.
+- Currency.
+
+**Step 2 — Build the As-Is Workflow**
+
+The user creates a visual workflow through the Process Studio.
+
+**Step 3 — Define Activity Characteristics**
+
+The user enters operational properties for each activity.
+
+**Step 4 — Run Process Analysis**
+
+FLOWPRINT validates the workflow and calculates process metrics.
+
+**Step 5 — Discover Opportunities**
+
+FLOWPRINT produces prioritized improvement recommendations.
+
+**Step 6 — Build a To-Be Scenario**
+
+The user selects suitable recommendations and edits the proposed workflow.
+
+**Step 7 — Simulate Impact**
+
+FLOWPRINT calculates changes in time, labor, and cost.
+
+**Step 8 — Generate a Report**
+
+The user exports a structured process optimization report.
+
+---
+
+# 7. Required Application Pages
+
+| Route | Purpose |
+|---|---|
+| `/` | Public landing page |
+| `/login` | Authentication |
+| `/signup` | Account registration |
+| `/app` | Main dashboard |
+| `/app/processes` | Process library |
+| `/app/processes/new` | Process creation |
+| `/app/processes/[id]` | Process overview |
+| `/app/processes/[id]/studio` | Workflow builder |
+| `/app/processes/[id]/intelligence` | Process analysis |
+| `/app/processes/[id]/opportunities` | Automation discovery |
+| `/app/processes/[id]/scenarios` | Scenario simulator |
+| `/app/processes/[id]/reports` | Report preview and export |
+| `/app/settings` | User and workspace settings |
+
+The application must include useful loading, empty, error, and success states.
+
+---
+
+# 8. Main Dashboard Requirements
+
+The dashboard should present an overview of the user's process improvement activities.
+
+### KPI Cards
+
+- Total Processes
+- Analyzed Processes
+- High-Priority Opportunities
+- Potential Monthly Hours Saved
+
+### Dashboard Sections
+
+**Recent Processes**
+
+List recently created or updated processes with their current status.
+
+**Automation Opportunities**
+
+Highlight the highest-priority recommendations across accessible processes.
+
+**Process Improvement Overview**
+
+Show an overview of estimated manual workload and improvement opportunities.
+
+**Recent Activity**
+
+Show meaningful activities such as process creation, analysis, scenario creation, and report generation.
+
+Dashboard metrics must be calculated from actual saved process data. Do not use hardcoded KPI numbers.
+
+---
+
+# 9. Technical Requirements
+
+## Frontend
+
+- Next.js with App Router.
+- React.
+- TypeScript with strict typing.
+- Tailwind CSS.
+- shadcn/ui.
+- Lucide React.
+- Framer Motion for restrained animations.
+
+## Workflow Visualization
+
+- `@xyflow/react` for the node-based visual editor.
+- Custom node components.
+- Custom node inspector.
+- React Flow state management integrated with application state.
+
+## State Management
+
+- Zustand for complex workflow and UI state.
+- Zod for validation.
+- React Hook Form for data entry.
+
+## Data Visualization
+
+- Recharts for process metrics, comparisons, and analytical charts.
+
+## Backend and Database
+
+- Supabase.
+- PostgreSQL.
+- Supabase Authentication.
+- Row Level Security.
+
+## Data Persistence
+
+All user-created processes and scenarios must persist.
+
+The editor must save its node data and connection data, including viewport information where practical.
+
+## Deployment
+
+- Vercel.
+- Supabase-hosted database.
+
+---
+
+# 10. Data Model
+
+## Workspaces
+
+- id
+- name
+- owner_id
+- created_at
+- updated_at
+
+## Processes
+
+- id
+- workspace_id
+- name
+- description
+- department
+- monthly_volume
+- currency
+- hourly_labor_cost
+- graph_json
+- created_at
+- updated_at
+
+## Scenarios
+
+- id
+- process_id
+- name
+- description
+- graph_json
+- adoption_rate
+- implementation_cost
+- created_at
+- updated_at
+
+The workflow graph should be stored as a validated JSON structure containing nodes and edges. Use a consistent versioned graph schema so future workflow changes do not break existing projects.
+
+## Node Data Structure
+
+Each node should contain:
+
+- id
+- type
+- position
+- label
+- description
+- owner_role
+- work_mode
+- effort_minutes
+- wait_minutes
+- system_name
+- repeatability
+- standardization
+- error_impact
+- integration_readiness
+
+Only relevant properties need to be populated for each node type.
+
+All application records must be scoped to the authenticated workspace.
+
+---
+
+# 11. Calculation Methodology
+
+The MVP supports linear workflows.
+
+### Process Human Effort
+
+`Total Human Effort = Sum of all Activity Effort Minutes`
+
+### Process Waiting Time
+
+`Total Waiting Time = Sum of all Wait Node Minutes + Activity Waiting Minutes`
+
+### Cycle Time
+
+`Cycle Time = Total Human Effort + Total Waiting Time`
+
+### Monthly Human Workload
+
+`Monthly Hours = (Total Human Effort / 60) × Monthly Volume`
+
+### Monthly Labor Cost
+
+`Monthly Cost = Monthly Hours × Hourly Labor Cost`
+
+For future scenarios, the same calculations are applied to the proposed process graph.
+
+### Potential Savings
+
+`Potential Monthly Hours Saved = (Baseline Monthly Hours - Proposed Monthly Hours) × Adoption Rate`
+
+`Potential Monthly Cost Savings = Potential Monthly Hours Saved × Hourly Labor Cost`
+
+### Payback Period
+
+`Payback Months = Implementation Cost / Potential Monthly Cost Savings`
+
+All calculation functions must be centralized in a dedicated calculation service, not scattered across UI components.
+
+Calculations must be unit-tested and must handle invalid values, missing data, and negative savings.
+
+---
+
+# 12. Non-Functional Requirements
+
+### Performance
+- Avoid unnecessary full-page rerenders when editing nodes.
+- Debounce autosaving.
+- Keep the canvas responsive when handling moderately sized workflows.
+- Use lazy loading for heavier reporting or visualization components where beneficial.
+
+### Usability
+- Clear visual hierarchy.
+- Intuitive node editing.
+- Consistent labels.
+- Useful tooltips.
+- Accessible keyboard interaction.
+- Responsive application layout.
+
+### Security
+- Use authenticated server-side access where applicable.
+- Apply database Row Level Security.
+- Validate incoming data on the server.
+- Never expose service-role keys to the client.
+- Keep environment secrets outside the repository.
+
+### Reliability
+- Autosave must report failures visibly.
+- Prevent accidental loss of the original process.
+- Validate workflows before analysis.
+- Provide confirmation before destructive actions.
+
+---
+
+# 13. MVP Scope vs Future Roadmap
+
+## MVP — Must Have
+
+- Landing page.
+- Application dashboard.
+- Process creation and management.
+- Interactive visual workflow builder.
+- Custom process nodes.
+- Process validation.
+- Process metrics.
+- Rule-based opportunity scoring.
+- Bottleneck detection.
+- Improvement recommendation cards.
+- As-Is and To-Be scenario editing.
+- Before vs After simulation.
+- Report preview and PDF printing.
+- JSON and CSV export.
+- Supabase persistence.
+- Demo dataset.
+
+## Version 2 — Advanced Capabilities
+
+- Workflow branching and gateways.
+- BPMN 2.0 support.
+- AI-assisted process analysis.
+- Natural-language process generation.
+- AI-assisted SOP generation.
+- Team collaboration.
+- Process version history.
+- Approval and review workflow.
+- Advanced what-if simulations.
+- Process template marketplace.
+
+## Version 3 — Enterprise Capabilities
+
+- Power Automate integration.
+- n8n integration.
+- Zapier integration.
+- API-based process execution.
+- Event-based process monitoring.
+- Real operational data ingestion.
+- Audit logs.
+- Role-based access control.
+- Organization-level analytics.
+
+Important: FLOWPRINT MVP is a process analysis and design platform, not an actual workflow execution engine. Do not advertise automations as being executed unless the corresponding integration has genuinely been implemented.
+
+---
+
+# 14. Design Direction
+
+## Visual Identity
+
+FLOWPRINT should feel like a premium enterprise SaaS product combined with a modern visual workflow design studio.
+
+**Design keywords:**
+
+- Minimalist.
+- Sophisticated.
+- Technical.
+- Spacious.
+- Intelligent.
+- Precise.
+- Professional.
+
+## Color Palette
+
+| Element | Color |
+|---|---|
+| Main Background | #F7F8FC |
+| Primary Surface | #FFFFFF |
+| Primary Text | #171827 |
+| Secondary Text | #747B8F |
+| Primary Accent | #665CF0 |
+| Positive / Success | #16A394 |
+| Warning | #E9A23B |
+| Danger | #DC6262 |
+| Border | #E8EAF1 |
+
+Use neutral surfaces, subtle shadows, thin borders, and carefully controlled accent colors.
+
+## Typography
+
+- Geist Sans or Inter for primary typography.
+- Geist Mono for numerical indicators and technical metadata.
+
+## Application Layout
+
+- Left navigation sidebar.
+- Compact top navigation.
+- Large central workspace.
+- Contextual right inspector.
+- Consistent page spacing.
+- Responsive behavior.
+
+## Design Restrictions
+
+Avoid:
+
+- Generic admin-dashboard templates.
+- Excessive gradients.
+- Excessive glassmorphism.
+- Unnecessary decorative graphics.
+- Oversized KPI cards.
+- Randomly mixed border radii.
+- Inconsistent icon styles.
+- Excessive animations.
+
+The workflow canvas must be the visual centerpiece of the product.
+
+---
+
+# 15. Acceptance Criteria
+
+The MVP is considered complete when:
+
+1. A user can access and explore a populated demo environment.
+2. A user can create a process and configure its basic information.
+3. A user can add, edit, move, connect, duplicate, and delete process nodes.
+4. The process graph can be saved and restored.
+5. Invalid workflows are rejected with clear explanations.
+6. Valid workflows generate correct process metrics.
+7. Opportunity scores are calculated from actual node inputs.
+8. Recommendations explain the factors behind their scores.
+9. A user can create a separate To-Be scenario.
+10. Changes to the scenario do not overwrite the original process.
+11. Before/after metrics update when the scenario changes.
+12. Cost savings and payback calculations use the documented formulas.
+13. Reports can be previewed and printed to PDF.
+14. Process information can be exported.
+15. The interface works on desktop and tablet.
+16. Core functions do not rely on decorative or non-functional buttons.
+17. Empty, loading, and error states are properly implemented.
+18. Database security policies protect users' data.
+
+---
+
+# 16. Final Product Definition
+
+FLOWPRINT should ultimately demonstrate the ability to combine:
+
+- Frontend engineering.
+- Advanced interactive UI.
+- TypeScript architecture.
+- Visual data modeling.
+- Business process analysis.
+- Rule-based decision support.
+- Financial and operational simulation.
+- Database design.
+- Report generation.
+- Product thinking.
+
+The product must communicate one clear message:
+
+**FLOWPRINT turns operational complexity into measurable improvement opportunities.**

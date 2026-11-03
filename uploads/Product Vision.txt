@@ -1,0 +1,53 @@
+Nama: FLOWPRINT
+
+Tagline: See the Work. Find the Waste. Design What's Next.
+
+Deskripsi produk:
+
+FLOWPRINT adalah platform analisis dan optimasi proses bisnis yang memungkinkan pengguna memvisualisasikan aktivitas operasional, mengidentifikasi bottleneck, menemukan peluang automasi, dan mensimulasikan dampak perubahan proses terhadap waktu, biaya, serta produktivitas.
+Contoh penggunaan nyata
+Misalnya sebuah perusahaan mempunyai proses pengajuan reimbursement:
+CURRENT PROCESS — BEFORE
+1. Karyawan mengisi formulir
+   
+   Manual · 10 menit
+2. Mengirim dokumen melalui email
+   
+   Manual · 5 menit
+3. Admin memeriksa kelengkapan
+   
+   Manual · 20 menit
+4. Menunggu persetujuan manajer
+   
+   Waiting · 1 hari
+5. Finance memasukkan data ke Excel
+   
+   Manual · 15 menit
+6. Finance melakukan pembayaran
+   
+   Manual · 10 menit
+
+FLOWPRINT ANALYSIS
+60 min
+Hands-on time / pengajuan
+1 day
+Waiting time
+
+Ilustrasi simulasi, bukan hasil pengukuran perusahaan sungguhan.
+
+RECOMMENDED PROCESS — AFTER
+1. Digital reimbursement form
+   
+   Standardized input
+2. Automatic document validation
+   
+   Automation opportunity
+3. Digital approval workflow
+   
+   Reduced manual handoffs
+4. Finance system integration
+   
+   Reduced duplicate data entry
+Proses target merupakan rancangan rekomendasi yang tetap perlu divalidasi oleh pemilik proses.
+
+Inilah pengalaman utama yang harus dibangun: pengguna memasukkan proses, FLOWPRINT menganalisisnya, lalu pengguna dapat merancang skenario perbaikan dan melihat potensi dampaknya.

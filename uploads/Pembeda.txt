@@ -1,0 +1,13 @@
+Ada tiga pengalaman yang harus menjadi daya tarik ketika orang mencoba aplikasinya.
+
+A. Visual process intelligence
+
+Pengguna melihat workflow bukan sekadar sebagai kotak-kotak yang saling terhubung. Setiap aktivitas mempunyai informasi mengenai durasi, biaya, jenis pekerjaan, dan potensi optimasi.
+
+B. Automation opportunity score
+
+Setiap aktivitas akan mendapatkan skor prioritas 0–100 berdasarkan karakteristik prosesnya. Skor ini adalah heuristic prioritization score, bukan prediksi akurat bahwa suatu aktivitas pasti bisa diotomatisasi.
+
+C. Before vs After Simulator
+
+Ini adalah fitur andalan. Pengguna dapat memilih rekomendasi, mengubah rancangan proses target, dan membandingkan estimasi waktu serta biaya sebelum dan sesudah perubahan.

@@ -1,0 +1,4 @@
+-- Superseded pre-deployment draft; intentionally contains no SQL.
+-- FLOWPRINT's deployed schema is isolated under flowprint_* and is defined by
+-- 0002_flowprint_supabase.sql. Do not recreate the earlier unprefixed tables
+-- (workspaces, processes, scenarios) in the connected project.
